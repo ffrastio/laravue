@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('harga_terbaru');
             $table->integer('stok');
             $table->integer('isi_per_dus');
+            $table->boolean('visible')->nullable()->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
