@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -14,7 +17,13 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view('pages.product.index');
+        $product = Product::all();
+        // $satuan = $product->harga_jual / $product->isi_per_dus;
+        // dd($product);
+        return view('pages.product.index')->with([
+            'product' => $product,
+            // 'satuan' => $satuan
+        ]);
     }
 
     /**
@@ -25,6 +34,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+        return view('pages.product.create');
     }
 
     /**
@@ -33,9 +43,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->nama);
+        $data['harga_terbaru'] = $request->harga_modal;
+
+        Product::create($data);
+
+        return redirect()->route('product.index');
     }
 
     /**

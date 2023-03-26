@@ -1,5 +1,5 @@
 @extends('layouts.index')
-
+@section('title', 'Dashboard')
 @section('content')
     <!-- Animated -->
     <div class="animated fadeIn">

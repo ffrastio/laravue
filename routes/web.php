@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     //
-    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/product', ProductController::class);
 });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('slug');
             $table->string('kategori');
-            $table->longText('deskripsi');
+            $table->longText('deskripsi')->nullable();
             $table->integer('harga_modal');
             $table->integer('harga_jual');
             $table->integer('harga_terbaru');
