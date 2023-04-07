@@ -1,6 +1,14 @@
 @extends('layouts.index')
 @section('title', 'Data Barang')
+
 @section('content')
+    <style>
+        table,
+        tr,
+        td {
+            font-size: 12px !important;
+        }
+    </style>
     <div class="orders">
         <div class="row">
             <div class="col-12">
@@ -31,13 +39,13 @@
                                             <td>{{ $item->kategori }}</td>
                                             <td>
                                                 @if ($item->deskripsi != null)
-                                                    {{ $item->deskripsi }}
+                                                    {!! $item->deskripsi !!}
                                                 @else
                                                     -
                                                 @endif
                                             </td>
                                             <td> @rupiah($item->harga_jual) </td>
-                                            <td> @rupiah($item->harga_modal / $item->isi_per_dus)</td>
+                                            <td> @rupiah($item->harga_terbaru / $item->isi_per_dus)</td>
                                             <td>{{ $item->stok }}</td>
                                             <td>
                                                 {{-- <a href="{{route('product.gallery', $item->id)}}" class="btn btn-info btn-sm"> --}}
@@ -50,6 +58,7 @@
                                                 </a>
                                                 <form action="{{ route('product.destroy', $item->id) }}" method="post"
                                                     class="d-inline">
+                                                    @csrf
                                                     @method('delete')
                                                     <button class="btn btn-danger btn-sm">
                                                         <i class="fa fa-trash"></i>
